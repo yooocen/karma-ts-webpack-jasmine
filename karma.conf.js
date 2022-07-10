@@ -1,7 +1,10 @@
 // Karma configuration
 // Generated on Tue Jul 05 2022 23:37:26 GMT+0800 (China Standard Time)
+const {
+  VueLoaderPlugin
+} = require('vue-loader')
 
-module.exports = function(config) {
+module.exports = function (config) {
   config.set({
 
     // base path that will be used to resolve all patterns (eg. files, exclude)
@@ -14,15 +17,17 @@ module.exports = function(config) {
 
 
     // list of files / patterns to load in the browser
-    files: [
-      {pattern : 'src/**/*.ts'},
-      {pattern : 'test/**/*.spec.ts'}
+    files: [{
+        pattern: 'src/**/*.ts'
+      },
+      {
+        pattern: 'test/**/*.spec.ts'
+      }
     ],
 
 
     // list of files / patterns to exclude
-    exclude: [
-    ],
+    exclude: [],
 
 
     // preprocess matching files before serving them to the browser
@@ -30,29 +35,33 @@ module.exports = function(config) {
     preprocessors: {
       'test/*.ts': ['webpack']
     },
-    
+
     webpack: {
       module: {
         rules: [{
-          test: /\.tsx?$/,
-          use: {
-            loader: 'ts-loader',
-            options: {
-              configFile: 'test/tsconfig.json'
+            test: /\.tsx?$/,
+            use: {
+              loader: 'ts-loader',
+              options: {
+                configFile: 'test/tsconfig.json'
+              }
             }
+          },
+          {
+            test: /\.vue$/,
+            loader: 'vue-loader'
           }
-        }]
+        ]
       },
       resolve: {
         extensions: ['.tsx', '.ts', '.js', '.json']
-      }
+      },
+      plugins: [
+        // 请确保引入这个插件！
+        new VueLoaderPlugin()
+      ]
     },
 
-    plugins: [
-      'karma-webpack',
-      'karma-jasmine',
-      'karma-chrome-launcher'
-    ],
 
     // test results reporter to use
     // possible values: 'dots', 'progress'
