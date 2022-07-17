@@ -38,23 +38,26 @@ module.exports = function (config) {
 
     webpack: {
       module: {
-        rules: [{
+        rules: [
+          {
+            test: /\.vue$/,
+            loader: 'vue-loader'
+          },
+          {
             test: /\.tsx?$/,
             use: {
               loader: 'ts-loader',
               options: {
-                configFile: 'test/tsconfig.json'
+                configFile: 'tsconfig.json',
+                appendTsSuffixTo: [/\.vue$/]
               }
             }
-          },
-          {
-            test: /\.vue$/,
-            loader: 'vue-loader'
           }
+          
         ]
       },
       resolve: {
-        extensions: ['.tsx', '.ts', '.js', '.json']
+        extensions: ['.tsx', '.ts', '.js', '.json','.vue']
       },
       plugins: [
         // 请确保引入这个插件！

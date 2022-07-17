@@ -1,5 +1,23 @@
 {
-  "include":[
-    "./**/*.ts"
+  "compilerOptions": {
+    "module": "ES6",
+    "target": "ES6",
+    "noImplicitAny": true,
+    "removeComments": true,
+    "preserveConstEnums": true,
+    "sourceMap": true,
+    "moduleResolution": "node",
+    "strict": true,
+    "lib": [
+      "es6",
+      "DOM",
+      "ES2017.Object",
+      "ESNext.AsyncIterable"
+    ],
+    "baseUrl": "./src"
+  },
+  "include": [
+    "**/*.ts",
+    "**/*.vue"
   ]
 }
